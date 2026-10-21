@@ -97,11 +97,9 @@ med syntetisk gammel deep URL. Testene dekker root/path/query/hash, auth-lignend
 verdier, ondsinnet `next`/path, host-guard, preview-knapp, loop og no-JS-markup.
 Ingen test kaller hosted Auth eller navigerer til ekte tokens/adresser.
 
-**Kjent testavvik etter cutover:** den eksisterende testen krever fortsatt at
-`CNAME` ikke finnes. Derfor gir full suite 11 beståtte og 1 feil på dagens `main`,
-selv om CNAME nå er riktig. Sikkerhetsregelen var laget for klargjøringsfasen og
-trenger en separat testvedlikeholdsendring. Ikke fjern produksjonens CNAME for å
-gjøre testen grønn. Testkode er ikke endret i denne dokumentasjonsoppryddingen.
+Alle 12 tester består etter cutover. Produksjonsoppsettet verifiseres med
+`CNAME` lik `study.asinfra.no` (avsluttende linjeskift tillates), mens unødvendige
+dependencies og workflows fortsatt avvises.
 
 ## Pages i produksjon
 

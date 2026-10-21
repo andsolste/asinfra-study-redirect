@@ -101,8 +101,10 @@ test('index and 404 are identical and self-contained, with guarded no-JS fallbac
     assert.doesNotMatch(html, /<script[^>]+src=|<link[^>]+rel="stylesheet"|@import|\b(?:fetch|localStorage|sessionStorage)\s*\(/);
     assert.ok(scripts[0]);
   }
-  for (const file of ['CNAME', 'package.json', 'package-lock.json', '.github/workflows']) {
-    assert.equal(existsSync(resolve(root, file)), false, 'Unnecessary setup or premature domain binding: ' + file);
+  assert.equal(existsSync(resolve(root, 'CNAME')), true);
+  assert.equal(readFileSync(resolve(root, 'CNAME'), 'utf8').replace(/\r?\n$/, ''), 'study.asinfra.no');
+  for (const file of ['package.json', 'package-lock.json', '.github/workflows']) {
+    assert.equal(existsSync(resolve(root, file)), false, 'Unnecessary setup: ' + file);
   }
   assert.equal(existsSync(resolve(root, '.nojekyll')), true);
 });
